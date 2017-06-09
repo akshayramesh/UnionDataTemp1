@@ -1,0 +1,68 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'mysql' ]
+2 info using npm@2.15.9
+3 info using node@v4.6.1
+4 verbose install initial load of C:\xampp\htdocs\UnionDataProj_ANG\pages\package.json
+5 warn package.json node-mysql@0.0.1 No description
+6 warn package.json node-mysql@0.0.1 No repository field.
+7 warn package.json node-mysql@0.0.1 No README data
+8 warn package.json node-mysql@0.0.1 No license field.
+9 verbose readDependencies loading dependencies from C:\xampp\htdocs\UnionDataProj_ANG\pages\package.json
+10 silly cache add args [ 'mysql@^2.5.4', null ]
+11 verbose cache add spec mysql@^2.5.4
+12 silly cache add parsed spec Result {
+12 silly cache add   raw: 'mysql@^2.5.4',
+12 silly cache add   scope: null,
+12 silly cache add   name: 'mysql',
+12 silly cache add   rawSpec: '^2.5.4',
+12 silly cache add   spec: '>=2.5.4 <3.0.0',
+12 silly cache add   type: 'range' }
+13 silly addNamed mysql@>=2.5.4 <3.0.0
+14 verbose addNamed ">=2.5.4 <3.0.0" is a valid semver range for mysql
+15 silly addNameRange { name: 'mysql', range: '>=2.5.4 <3.0.0', hasData: false }
+16 silly mapToRegistry name mysql
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry data Result {
+19 silly mapToRegistry   raw: 'mysql',
+19 silly mapToRegistry   scope: null,
+19 silly mapToRegistry   name: 'mysql',
+19 silly mapToRegistry   rawSpec: '',
+19 silly mapToRegistry   spec: 'latest',
+19 silly mapToRegistry   type: 'tag' }
+20 silly mapToRegistry uri https://registry.npmjs.org/mysql
+21 verbose addNameRange registry:https://registry.npmjs.org/mysql not in flight; fetching
+22 verbose request uri https://registry.npmjs.org/mysql
+23 verbose request no auth needed
+24 info attempt registry request try #1 at 2:46:42 PM
+25 verbose request id 1f0daea226f501e0
+26 http request GET https://registry.npmjs.org/mysql
+27 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 151.101.52.162:443
+28 info attempt registry request try #2 at 2:47:19 PM
+29 http request GET https://registry.npmjs.org/mysql
+30 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 151.101.52.162:443
+31 info attempt registry request try #3 at 2:48:40 PM
+32 http request GET https://registry.npmjs.org/mysql
+33 verbose stack Error: connect ETIMEDOUT 151.101.52.162:443
+33 verbose stack     at Object.exports._errnoException (util.js:907:11)
+33 verbose stack     at exports._exceptionWithHostPort (util.js:930:20)
+33 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:14)
+34 verbose cwd C:\xampp\htdocs\UnionDataProj_ANG\pages
+35 error Windows_NT 10.0.10586
+36 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "mysql"
+37 error node v4.6.1
+38 error npm  v2.15.9
+39 error code ETIMEDOUT
+40 error errno ETIMEDOUT
+41 error syscall connect
+42 error network connect ETIMEDOUT 151.101.52.162:443
+42 error network This is most likely not a problem with npm itself
+42 error network and is related to network connectivity.
+42 error network In most cases you are behind a proxy or have bad network settings.
+42 error network
+42 error network If you are behind a proxy, please make sure that the
+42 error network 'proxy' config is set properly.  See: 'npm help config'
+43 verbose exit [ 1, true ]
