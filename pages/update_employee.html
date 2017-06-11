@@ -1,11 +1,17 @@
-    <div class="row" data-ng-controller="displayController">
+    <div class="row" data-ng-controller="updateController">
                     <div class="col-lg-12">
+
                         <h1 class="page-header">Update Employee</h1>
+                         <!-- <div class="col-sm-offset-10">
+                          <button type="submit" class="btn btn-primary" data-ng-click="editMode()">Edit</button>
+                          </div>
+ -->                      
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
               <div class="row">
+                
                 <div class="alert alert-success" ng-show="showSuccessAlert">
                           <button type="button" class="close" data-ng-click="switchBool('showUpdateSuccess')">×</button> <strong>Done!</strong> {{successTextAlert}}</div>
                 <div class="alert alert-danger" ng-show="showErrorAlert">
@@ -18,90 +24,90 @@
                                       <div class="form-group">
                                           <label class="control-label col-sm-2" for="email">Name</label>
                                           <div class="col-sm-4">
-                                              <input type="text" class="form-control" name="idName" placeholder="Enter Full Name" data-ng-model="nameUpdated" required>
+                                              <input type="text" class="form-control" name="idName" placeholder="Enter Full Name" data-ng-model="$root.selectedEmployee.name" required>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="control-label col-sm-2" for="email">Employee ID</label>
                                           <div class="col-sm-4">
-                                              <input type="number" disabled class="form-control" name="idEmployeeID" placeholder="Enter Employee ID" data-ng-model="idUpdated" required>
+                                              <input type="number" class="form-control" name="idEmployeeID" placeholder="Enter Employee ID" data-ng-model="$root.selectedEmployee.employeeID" required>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="control-label col-sm-2" for="sex">Sex</label>
                                           <div class="col-sm-4">
-                                              <label><input type="radio" name="idSex" value="Male" data-ng-model="sex">Male</label>
-                                              <label><input type="radio" name="idSex" value="Female" data-ng-model="sex">Female</label>
+                                              <label><input type="radio" name="idSex" value="Male" data-ng-model="$root.selectedEmployee.sex">Male</label>
+                                              <label><input type="radio" name="idSex" value="Female" data-ng-model="$root.selectedEmployee.sex">Female</label>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                         <label class="control-label col-sm-2" for="branch">Branch</label>
                                         <div class="col-sm-4">
-                                          <input type="text" class="form-control" name="idBranch" placeholder="Enter Branch Name" data-ng-model="branch">
+                                          <input type="text" class="form-control" name="idBranch" placeholder="Enter Branch Name" data-ng-model="$root.selectedEmployee.branch">
                                       </div>
                                      </div>
                                       <div class="form-group">
                                         <label class="control-label col-sm-2" for="datej">Date of Joining</label>
                                         <div class="col-sm-4">
-                                          <input type="date" class="form-control" name="idDOJ" data-ng-model="doj">
+                                          <input type="date" class="form-control" name="idDOJ" data-ng-model="$root.selectedEmployee.doj">
                                       </div>
                                      </div>
                                       <div class="form-group">
                                         <label class="control-label col-sm-2" for="dateb">Date of Retirement</label>
                                         <div class="col-sm-4"> 
-                                          <input type="date" class="form-control" name="idDOR" data-ng-model="dor">
+                                          <input type="date" class="form-control" name="idDOR" data-ng-model="$root.selectedEmployee.dor">
                                       </div>
                                      </div>
                                      <div class="form-group">
                                         <label class="control-label col-sm-2" for="pwd">Contact Number</label>
                                         <div class="col-sm-4">
-                                          <input type="number" class="form-control" name="idContactNum" placeholder="Enter Contact Number" data-ng-model="contact">
+                                          <input  class="form-control" name="idContactNum" placeholder="Enter Contact Number" data-ng-model="$root.selectedEmployee.contact">
                                       </div>
                                      </div>
                                      <div class="form-group">
                                         <label class="control-label col-sm-2" for="pwd">Address</label>
                                         <div class="col-sm-4">
-                                          <textarea class="form-control" name="idAddress" rows="3" placeholder="Enter Complete Address" data-ng-model="address"></textarea>
+                                          <textarea class="form-control" name="idAddress" rows="3" placeholder="Enter Complete Address" data-ng-model="$root.selectedEmployee.address"></textarea>
                                       </div>
                                      </div>
                                      <div class="form-group">
                                         <label class="control-label col-sm-2" for="pwd">Branch Request 1</label>
                                         <div class="col-sm-4">
-                                          <input type="text" class="form-control" name="idBranchReq1" placeholder="Enter Requested Branch Name" data-ng-model="branchReq1">
+                                          <input type="text" class="form-control" name="idBranchReq1" placeholder="Enter Requested Branch Name" data-ng-model="$root.selectedEmployee.branchReq1">
                                       </div>
                                      </div>
                                       <div class="form-group">
                                         <label class="control-label col-sm-2" for="pwd">Branch Request 2</label>
                                         <div class="col-sm-4"> 
-                                          <input type="text" class="form-control" name="idBranchReq2" placeholder="Enter Requested Branch Name" data-ng-model="branchReq2">
+                                          <input type="text" class="form-control" name="idBranchReq2" placeholder="Enter Requested Branch Name" data-ng-model="$root.selectedEmployee.branchReq2">
                                       </div>
                                      </div>
                                       <div class="form-group">
                                         <label class="control-label col-sm-2" for="pwd">Branch Request 3</label>
                                         <div class="col-sm-4"> 
-                                          <input type="text" class="form-control" name="idBranchReq3" placeholder="Enter Requested Branch Name" data-ng-model="branchReq3">
+                                          <input type="text" class="form-control" name="idBranchReq3" placeholder="Enter Requested Branch Name" data-ng-model="$root.selectedEmployee.branchReq3">
                                       </div>
                                      </div>
                                       <div class="form-group">
                                           <label class="control-label col-sm-2" for="email">Relief Fund Member ? </label>
                                           <div class="col-sm-10">
-                                              <label><input type="radio" name="idReliefFundMember" value="Yes" data-ng-model="reliefFundMember">Yes</label>
-                                              <label><input type="radio" name="idReliefFundMember" value="No" data-ng-model="reliefFundMember">No</label>
+                                              <label><input type="radio" name="idReliefFundMember" value="Yes" data-ng-model="$root.selectedEmployee.reliefFundMember">Yes</label>
+                                              <label><input type="radio" name="idReliefFundMember" value="No" data-ng-model="$root.selectedEmployee.reliefFundMember">No</label>
                                           </div>
                                       </div>
                                        <div class="form-group">
                                           <label class="control-label col-sm-2" for="union">Union Name </label>
                                           <div class="col-sm-10">
-                                              <label><input type="radio" name="idUnionName" value="AIBEA" data-ng-model="unionName">AIBEA</label>
-                                              <label><input type="radio" name="idUnionName" value="BEFI" data-ng-model="unionName">BEFI</label>
-                                              <label><input type="radio" name="idUnionName" value="AIBOA" data-ng-model="unionName">AIBOA</label>
-                                              <label><input type="radio" name="idUnionName" value="AIBOC" data-ng-model="unionName">AIBOC</label>
+                                              <label><input type="radio" name="idUnionName" value="AIBEA" data-ng-model="$root.selectedEmployee.unionName">AIBEA</label>
+                                              <label><input type="radio" name="idUnionName" value="BEFI" data-ng-model="$root.selectedEmployee.unionName">BEFI</label>
+                                              <label><input type="radio" name="idUnionName" value="AIBOA" data-ng-model="$root.selectedEmployee.unionName">AIBOA</label>
+                                              <label><input type="radio" name="idUnionName" value="AIBOC" data-ng-model="$root.selectedEmployee.unionName">AIBOC</label>
                                           </div>
                                       </div>
 
                                   <div class="form-group"> 
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" class="btn btn-primary" data-ng-click="edit_employee(employeeForm)">Update</button>
+                                      <button type="submit" class="btn btn-primary" data-ng-click="update_employee()">Update</button>
                                   </div>
                               </div>
                           </form>

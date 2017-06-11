@@ -25,11 +25,15 @@ unionApp.config(function($routeProvider){
 		})
 		.when('/updateEmployee',{
 			templateUrl : 'update_employee.html',
-			controller : 'displayController'
+			controller : 'updateController'
+		})
+		.when('/displayFromDashboard',{
+			templateUrl : 'display_unionEmployees.html',
+			controller : 'displayFromDashboardController'
 		});
 });
 
-unionApp.controller('dashboardController', function($scope, $http){
+unionApp.controller('dashboardController', function($scope, $http, $rootScope){
 	$scope.message = "unionApp loaded";
 	$http.get('http://localhost:8080/union_data_srv/employee/count').
         then(function(response) {
@@ -59,7 +63,10 @@ unionApp.controller('dashboardController', function($scope, $http){
             $scope.reliefFundMembers = response.data;
         });
        
-    
+    $scope.dashboardButtonClicked = function(value){
+    	$rootScope.selectedValue = value;
+    }
+
     
     
 
@@ -124,7 +131,7 @@ unionApp.controller('createEmployeeController', function($scope, $http){
 
 });
 
-unionApp.controller('displayController', function($scope, $http, EmployeeData){
+unionApp.controller('displayController', function($scope, $http, $rootScope){
 	$scope.message = "display";
 	$scope.showSuccessAlert = false;
 	$scope.showErrorAlert = false;
@@ -135,10 +142,10 @@ unionApp.controller('displayController', function($scope, $http, EmployeeData){
         });
 
     $scope.search_by_branch = function(branchName){
-    	if ($scope.searchedBranch === undefined || $scope.searchedBranch === '') {
+    	if ($scope.searchValue === undefined || $scope.searchValue === '') {
 		$scope.search_url = 'http://localhost:8080/union_data_srv/employee';
     	}else{
-    	$scope.search_url = 'http://localhost:8080/union_data_srv/employee/branch/' + $scope.searchedBranch;
+    	$scope.search_url = 'http://localhost:8080/union_data_srv/employee/search/' + $scope.searchValue;
    		 }
     	$http.get($scope.search_url).
     	then(function(response){
@@ -147,31 +154,41 @@ unionApp.controller('displayController', function($scope, $http, EmployeeData){
     	});
     }
 
-    $scope.editClicked = function(oEvent, EmployeeData){
-    	$scope.idUpdated  = oEvent.employeeID;
-    	$scope.nameUpdated  = oEvent.name;
-    	EmployeeData.setData(oEvent);
-
+    $scope.editClicked = function(oEvent){
+    	$rootScope.selectedEmployee  = oEvent;
+    	$rootScope.selectedEmployee.doj = $rootScope.selectedEmployee.doj .toString();
     }
 
-    $scope.edit_employee = function(employeeForm){
+ 
+});
 
-    	var pp = $scope.idUpdated;
-		var newEmployee = {
-				"employeeID" : $scope.id,
-				"name" : $scope.name,
-				"sex" : $scope.sex,
-				"branch" : $scope.branch,
+unionApp.controller('updateController', function($scope, $http, $rootScope){
+
+	$scope.getDate = function(value){
+		return value.toString();
+	}
+
+	$scope.editMode = function(){
+		$("input").prop('disabled', true);
+	}
+
+	$scope.update_employee = function(oEvent){
+
+	var newEmployee = {
+				"employeeID" : $rootScope.selectedEmployee.employeeID,
+				"name" : $rootScope.selectedEmployee.name,
+				"sex" : $rootScope.selectedEmployee.sex,
+				"branch" : $rootScope.selectedEmployee.branch,
 				"branchID" : "000",
-				"doj" : $scope.doj,
-				"dor" : $scope.dor,
-				"contact" : $scope.contact,
-				"address" : $scope.address,
-				"branchReq1" : $scope.branchReq1,
-				"branchReq2" : $scope.branchReq1,
-				"branchReq3" : $scope.branchReq2,
-				"reliefFundMember" : $scope.reliefFundMember,
-				"unionName" : $scope.unionName
+				"doj" : $rootScope.selectedEmployee.doj,
+				"dor" : $rootScope.selectedEmployee.dor,
+				"contact" : $rootScope.selectedEmployee.contact,
+				"address" : $rootScope.selectedEmployee.address,
+				"branchReq1" : $rootScope.selectedEmployee.branchReq1,
+				"branchReq2" : $rootScope.selectedEmployee.branchReq2,
+				"branchReq3" : $rootScope.selectedEmployee.branchReq3,
+				"reliefFundMember" : $rootScope.selectedEmployee.reliefFundMember,
+				"unionName" : $rootScope.selectedEmployee.unionName
 		};
 
 		$http({
@@ -186,30 +203,42 @@ unionApp.controller('displayController', function($scope, $http, EmployeeData){
         $scope.response = response;
         $scope.showUpdateSuccess = true;
         $scope.showUpdateError = false;
-        $scope.id = "";
-		$scope.name = "";
-		$scope.sex = "";
-		$scope.branch = "";
-		$scope.doj = "";
-		$scope.dor = "";
-		$scope.contact = "";
-		$scope.address = "";
-		$scope.branchReq1 = "";
-		$scope.branchReq1 = "";
-		$scope.branchReq2 = "";
-		$scope.reliefFundMember = "";
-		$scope.unionName = "";
+        $rootScope.selectedEmployee = {};
+        window.history.back();
+        alert("Updated");
 
     }).error(function(error){
         $scope.errorTextAlert = error;
+
         $scope.showUpdateError = true;
         $scope.showUpdateSuccess = false;
     });
-	}
-});
 
-unionApp.controller('updateController', function($scope, $http){
+	}
+
 
 	
 
+});
+
+unionApp.controller("displayFromDashboardController", function($scope, $http, $rootScope){
+	$scope.selectedField = $rootScope.selectedValue;
+
+
+	if($scope.selectedField === 'reliefFundMembers'){
+		$scope.search_url = 'http://localhost:8080/union_data_srv/employee/reliefFundMembers';
+	}
+	else {
+		$scope.search_url = 'http://localhost:8080/union_data_srv/employee/union_employees/' + $scope.selectedField;
+	}
+	$http.get($scope.search_url).
+    	then(function(response){
+    		$scope.list_employees = response.data;
+    		// alert("Filterd");
+    	});
+
+	 $scope.editClicked = function(oEvent){
+    	$rootScope.selectedEmployee  = oEvent;
+    	$rootScope.selectedEmployee.doj = $rootScope.selectedEmployee.doj .toString();
+    }
 });

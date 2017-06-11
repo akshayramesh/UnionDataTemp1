@@ -15,7 +15,7 @@
                     </div>
                     <div class="panel-body col-lg-4">
                       <div class="input-group custom-search-form">
-                      <input type="text" class="form-control" placeholder="Search by Branch Name" data-ng-model="searchedBranch">
+                      <input type="text" class="form-control" placeholder="Search by Name or Branch" data-ng-model="searchValue">
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="button" data-ng-click="search_by_branch(branchName)">
                           <i class="fa fa-search"></i>
@@ -31,8 +31,8 @@
                             <th>Employee ID</th>
                             <th>Name</th>
                             <th>Branch</th>
-                            <th>Sex</th>
-                            <th>Address</th>
+                            
+                            
                             <th>Contact Number</th>
                             <th>Union Name</th>
                             <th></th>
@@ -44,11 +44,11 @@
                             <td>{{item.employeeID}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.branch}}</td>
-                            <td>{{item.sex}}</td>
-                            <td>{{item.address}}</td>
+                            
+                            
                             <td>{{item.contact}}</td>
                             <td class="center">{{item.unionName}}</td>
-                            <td><a href="#updateEmployee"><button class="btn btn-default" type="button" data-ng-click="editClicked(data.tes = item)" value="">Edit</button></a></td>
+                            <td><a href="#updateEmployee"><button class="btn btn-default" type="button" data-ng-click="editClicked(data.tes = item)" value="">Show</button></a></td>
                           </tr>
                         </tbody>
                       </table>
