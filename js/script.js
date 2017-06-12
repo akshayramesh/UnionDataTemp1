@@ -226,6 +226,7 @@ unionApp.controller("displayFromDashboardController", function($scope, $http, $r
 
 
 	if($scope.selectedField === 'reliefFundMembers'){
+		$scope.selectedField = "Relief Fund"
 		$scope.search_url = 'http://localhost:8080/union_data_srv/employee/reliefFundMembers';
 	}
 	else {
